@@ -1,71 +1,58 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{$header}} - {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tailwind.output.css') }}" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="{{asset('js/init-alpine.js')}}" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
+    <script src="{{asset('js/charts-lines.js')}}" defer></script>
+    <script src="{{asset('js/charts-pie.js')}}" defer></script>
+    <script src="{{asset('js/charts-bars.js')}}" defer></script>
 
     @livewireStyles
+    <script>
+        import Turbolinks from 'turbolinks';
+        Turbolinks.start()
+
+    </script>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script> --}}
 </head>
 
-<body class="font-sans antialiased">
-    <x-jet-banner />
+<body>
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        @include('layouts.menu')
+        @include('layouts.mobile-menu')
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
-
-        <!-- Page Heading -->
-        @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{$header}}
-                </h2>
-            </div>
-        </header>
-        @endif
-
-        <!-- Page Content -->
-
-        <div class="py-6">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </div>
-                @endif
-
-                @if(session('success'))
-                <div class="alert alert-success">
-                    <i class="fa fa-check"></i>
-                    {{session('success')}}
-                </div>
-                @endif
-
-                {{$slot}}
-            </div>
+        <div class="flex flex-col flex-1 w-full">
+            @include('layouts.navigation-dropdown')
+            <main class="h-full overflow-y-auto">
+                {{ $slot }}
+            </main>
         </div>
 
+
+        @stack('modals')
+
+        @livewireScripts
     </div>
-
-    @stack('modals')
-
-    @livewireScripts
 </body>
 
 </html>
