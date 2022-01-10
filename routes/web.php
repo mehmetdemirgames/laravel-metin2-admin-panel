@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +24,8 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 
-
+/*
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
     Route::view('charts', 'charts')->name('charts');
@@ -31,4 +33,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::view('modals', 'modals')->name('modals');
     Route::view('tables', 'tables')->name('tables');
     Route::view('calendar', 'calendar')->name('calendar');
+}); */
+
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard', [ MainController::class, 'dashboard'])->name('dashboard');
+    Route::resource('player', PlayerController::class);
+    Route::resource('account', AccountController::class);
 });
