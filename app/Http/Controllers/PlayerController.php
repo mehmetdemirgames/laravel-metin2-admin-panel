@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\player\Player;
+use Illuminate\Support\Str;
 
 class PlayerController extends Controller
 {
@@ -15,12 +16,14 @@ class PlayerController extends Controller
     public function index(Request $request)
     {
         $player = Player::select('id', 'account_id', 'name', 'level' , 'job', 'last_play')->with('account', 'guild_member');
-                                
-        
-        if(request()->get('name')){
+
+        if(Str::length(request()->get('name')) < 2){
+            return 'Karakter adını daha tanımlayıcı girin.';
+        }
+        else{
             $player = $player->where('name', 'LIKE', "%".request()->get('name')."%");
         }
-
+        
         $player = $player->paginate(10);
 
         return view('player.list', compact('player'));
@@ -64,9 +67,10 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($name)
     {
-        //
+        return view('player.edit');
+        return Player::where('name', $name)->first() ?? abort(404, 'Karakter bulunamadı');
     }
 
     /**
