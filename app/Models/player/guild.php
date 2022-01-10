@@ -10,5 +10,5 @@ class guild extends Model
     use HasFactory;
 
     protected $table = 'player.guild';
-
+    
 }

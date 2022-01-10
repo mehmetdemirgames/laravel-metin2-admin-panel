@@ -31,9 +31,13 @@
                                     </div>
                                     <div>
                                         <p class="font-semibold">{{$playerr->name}}</p>
-                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                            10x Developer
-                                        </p>
+                                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                           @if($playerr->Guild)
+                                               {{  $playerr->Guild->name  }}
+                                           @else
+                                                Herhangi bir loncaya katılmadı.
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
                             </td>

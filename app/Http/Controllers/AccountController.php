@@ -54,7 +54,7 @@ class AccountController extends Controller
      */
     public function show($login)
     {
-        return $account = Account::where('login', $login)->first();
+        return $account = Account::where('login', $login)->with('players')->first();
         
         return view('account.list', compact('account'));
     }

@@ -9,4 +9,5 @@ class guild_member extends Model
 {
     use HasFactory;
     protected $table = 'player.guild_member';
+
 }

@@ -14,7 +14,8 @@ class PlayerController extends Controller
      */
     public function index(Request $request)
     {
-        $player = Player::select('id', 'account_id', 'name', 'level' , 'job', 'last_play')->with('account');
+        $player = Player::select('id', 'account_id', 'name', 'level' , 'job', 'last_play')->with('account', 'guild_member');
+                                
         
         if(request()->get('name')){
             $player = $player->where('name', 'LIKE', "%".request()->get('name')."%");
