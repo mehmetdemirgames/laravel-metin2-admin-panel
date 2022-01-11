@@ -14,8 +14,10 @@ class Player extends Model
     protected $table = 'player.player';
     protected $dates = ['last_play'];
     protected $fillable = ['name'];
-    protected $guarded = ['id'];
+    //protected $guarded = ['id'];
     protected $appends = ['Guild'];
+    
+    public $timestamps = false; 
 
     public function getLastPlayAttribute($date){
         return $date ? Carbon::parse($date) : null;

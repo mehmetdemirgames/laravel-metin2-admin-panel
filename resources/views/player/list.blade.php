@@ -4,7 +4,31 @@
             Karakter Listesi
         </h2>
 
-        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <form method="GET" action="">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                focus:outline-none focus:shadow-outline-purple 
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Karakter Adı"
+                        name="name" value="{{request()->get('name')}}"/>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                focus:outline-none focus:shadow-outline-purple 
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="ip Adresi" name="ip" value="{{request()->get('ip')}}"/>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                focus:outline-none focus:shadow-outline-purple 
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Yang Miktarı" name="gold" value="{{request()->get('gold')}}"/>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-full">Ara</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="w-full overflow-hidden rounded-lg shadow-xs mt-2">
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -31,11 +55,12 @@
                                     </div>
                                     <div>
                                         <p class="font-semibold">{{$playerr->name}}</p>
-                                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                           @if($playerr->Guild)
-                                               {{  $playerr->Guild->name  }}
-                                           @else
-                                                Herhangi bir loncaya katılmadı.
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                            @if($playerr->Guild)
+                                            {{  $playerr->Guild->name  }}
+                                            @else
+                                            Herhangi bir loncaya katılmadı.
                                             @endif
                                         </span>
                                     </div>
@@ -50,12 +75,18 @@
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    <a href="{{route('account.show', $playerr->account->login)}}">{{$playerr->account->login}}</a>
+                                    <a
+                                        href="{{route('account.show', $playerr->account->login)}}">{{$playerr->account->login}}</a>
                                 </span>
                             </td>
 
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
+                                    <a href="{{route('player.edit', $playerr->name)}}"
+                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                        aria-label="Edit">
+                                        <i class="fa fa-block"></i>
+                                    </a>
                                     <a href="{{route('player.edit', $playerr->name)}}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit">
@@ -84,8 +115,8 @@
 
             </div>
             <div class="my-4 flex justify-center flex-1 lg:mr-32">
-                
-                        {{$player->links()}}
+
+                {{$player->withQueryString()->links()}}
             </div>
         </div>
     </div>

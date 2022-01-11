@@ -42,6 +42,20 @@
         <div class="flex flex-col flex-1 w-full">
             @include('layouts.navigation-dropdown')
             <main class="h-full overflow-y-auto">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li >{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        <i class="fa fa-check"></i>
+                            {{session('success')}}
+                    </div>
+                @endif
                 {{ $slot }}
             </main>
         </div>

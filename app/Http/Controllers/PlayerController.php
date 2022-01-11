@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\player\Player;
 use Illuminate\Support\Str;
+use App\Models\account\Account;
+use Illuminate\Support\Facades\Cache;
+
 
 class PlayerController extends Controller
 {
@@ -15,17 +18,26 @@ class PlayerController extends Controller
      */
     public function index(Request $request)
     {
+        if(cache::has('player')){
+            $player = cache('player');
+            return view('player.list', compact('player'));
+        }
+
         $player = Player::select('id', 'account_id', 'name', 'level' , 'job', 'last_play')->with('account', 'guild_member');
 
-        if(Str::length(request()->get('name')) < 2){
-            return 'Karakter adını daha tanımlayıcı girin.';
+        if(request()->get('name')){
+           $player = $player->where('name', 'LIKE', "%".request()->get('name')."%");
         }
-        else{
-            $player = $player->where('name', 'LIKE', "%".request()->get('name')."%");
+        if(request()->get('ip')){
+           $player = $player->where('ip', request()->get('ip'));
         }
-        
+        if(request()->get('gold')){
+           $player = $player->where('gold', request()->get('gold'));
+        }
         $player = $player->paginate(10);
 
+        Cache::put('player', $player, 120);
+        $player = cache('player');
         return view('player.list', compact('player'));
     }
 
@@ -69,8 +81,8 @@ class PlayerController extends Controller
      */
     public function edit($name)
     {
-        return view('player.edit');
-        return Player::where('name', $name)->first() ?? abort(404, 'Karakter bulunamadı');
+        $player = Player::where('name', $name)->first() ?? abort(404, 'Karakter bulunamadı');
+        return view('player.edit', compact('player'));
     }
 
     /**
@@ -82,7 +94,9 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $player = Player::find($id) ?? abort(404, 'Karakter Bulunamadı');
+        Player::find($id)->update($request->except(['_token','_method']));
+        return redirect()->route('player.index')->withSuccess('Karakter başarıyla güncellendi');
     }
 
     /**
@@ -95,4 +109,10 @@ class PlayerController extends Controller
     {
         //
     }
+
+    public function search_blade()
+    {
+        return view('player.search');
+    }
+
 }

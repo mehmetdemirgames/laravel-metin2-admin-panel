@@ -12,6 +12,7 @@ class Account extends Model
     protected $table = 'account.account';
 
     public function players(){
-        return $this->hasMany('App\Models\player\Player');
+        return $this->hasMany('App\Models\player\Player', 'account_id')
+        ->select('id', 'account_id', 'name', 'level' , 'job', 'last_play');
     }
 }
