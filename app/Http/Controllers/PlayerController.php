@@ -18,11 +18,6 @@ class PlayerController extends Controller
      */
     public function index(Request $request)
     {
-        if(cache::has('player')){
-            $player = cache('player');
-            return view('player.list', compact('player'));
-        }
-
         $player = Player::select('id', 'account_id', 'name', 'level' , 'job', 'last_play')->with('account', 'guild_member');
 
         if(request()->get('name')){
@@ -36,8 +31,6 @@ class PlayerController extends Controller
         }
         $player = $player->paginate(10);
 
-        Cache::put('player', $player, 120);
-        $player = cache('player');
         return view('player.list', compact('player'));
     }
 
