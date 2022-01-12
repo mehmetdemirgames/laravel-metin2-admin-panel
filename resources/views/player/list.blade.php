@@ -9,18 +9,20 @@
                 <div class="col-md-2">
                     <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
                 focus:outline-none focus:shadow-outline-purple 
-                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Karakter Adı"
-                        name="name" value="{{request()->get('name')}}"/>
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Karakter Adı" name="name"
+                        value="{{request()->get('name')}}" />
                 </div>
                 <div class="col-md-2">
                     <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
                 focus:outline-none focus:shadow-outline-purple 
-                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="ip Adresi" name="ip" value="{{request()->get('ip')}}"/>
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="ip Adresi" name="ip"
+                        value="{{request()->get('ip')}}" />
                 </div>
                 <div class="col-md-2">
                     <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
                 focus:outline-none focus:shadow-outline-purple 
-                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Yang Miktarı" name="gold" value="{{request()->get('gold')}}"/>
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Yang Miktarı" name="gold"
+                        value="{{request()->get('gold')}}" />
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-success w-full">Ara</button>
@@ -82,10 +84,10 @@
 
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
-                                    <a href="{{route('player.edit', $playerr->name)}}"
+                                    <a href="{{route('account.action', $playerr->account->id)}}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit">
-                                        <i class="fa fa-block"></i>
+                                        <i class="fa fa-ban"></i>
                                     </a>
                                     <a href="{{route('player.edit', $playerr->name)}}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -96,15 +98,6 @@
                                             </path>
                                         </svg>
                                     </a>
-                                    <button
-                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                        aria-label="Delete">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
                                 </div>
                             </td>
                             @endforeach
@@ -119,5 +112,11 @@
                 {{$player->withQueryString()->links()}}
             </div>
         </div>
+
+
+
     </div>
+
+
+
 </x-app-layout>

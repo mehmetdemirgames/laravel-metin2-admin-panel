@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\account\Account;
+use Carbon\Carbon;
 
 class AccountController extends Controller
 {
@@ -91,5 +92,43 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function action($account_id)
+    {
+        $account = Account::whereId($account_id)->with('players')->first();
+        return view('account.action', compact('account'));
+    }
+
+    public function transactions(Request $request, $account_id){
+
+        if($request->get('ban_time')){
+            $ban_time_list = ['1 Saat' => '3600', '12 Saat' => '43200', '1 Gün' => '86400', '3 Gün' => '259200', '7 Gün' => '604800', '15 Gün' => '1296000', '30 Gün' => '2592000'];
+            $date = now()->addSeconds($ban_time_list[$request->input('ban_time')])->format('Y-m-d H:i:s');;
+        }
+        
+        //return $request->get('ban_time');
+        if($request->ban_type == 'Hesap Ban'){
+
+            Account::find($account_id)->update([
+                'availDt' => $date
+            ]);
+            
+            return redirect()->route('account.index')->withSuccess('Hesap banlama işlemi gerçekleşti');
+        }
+        elseif($request->ban_type == 'Mac Ban'){
+            
+        }
+        elseif($request->ban_type == 'Chat Ban'){
+            
+        }
+        elseif($request->ban_type == 'Ban Aç'){
+            
+        }
+        elseif($request->ban_type == 'Mac Ban Aç'){
+            
+        }
+
+        return $request->all();
     }
 }

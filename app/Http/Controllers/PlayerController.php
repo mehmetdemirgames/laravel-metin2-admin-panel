@@ -110,9 +110,5 @@ class PlayerController extends Controller
         //
     }
 
-    public function search_blade()
-    {
-        return view('player.search');
-    }
 
 }

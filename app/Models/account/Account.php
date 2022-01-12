@@ -10,6 +10,8 @@ class Account extends Model
     use HasFactory;
 
     protected $table = 'account.account';
+    protected $fillable = ['availDt'];
+    public $timestamps = false; 
 
     public function players(){
         return $this->hasMany('App\Models\player\Player', 'account_id')

@@ -39,4 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [ MainController::class, 'dashboard'])->name('dashboard');
     Route::resource('player', PlayerController::class);
     Route::resource('account', AccountController::class);
+    Route::get('account/{id}/action', [AccountController::class, 'action'])->name('account.action');
+    Route::post('account/{id}/transactions', [AccountController::class, 'transactions'])->name('account.transactions');
 });
