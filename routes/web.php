@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\GuildController;
+use App\Http\Controllers\SupportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [ MainController::class, 'dashboard'])->name('dashboard');
     Route::resource('player', PlayerController::class);
+    Route::resource('guild', GuildController::class);
     Route::resource('account', AccountController::class);
+    Route::resource('support', SupportController::class);
     Route::get('account/{id}/action', [AccountController::class, 'action'])->name('account.action');
     Route::post('account/{id}/transactions', [AccountController::class, 'transactions'])->name('account.transactions');
+    Route::post('support/{id}/add_answer', [SupportController::class, 'add_answer'])->name('support.add_answer');
+    Route::get('support/{id}/close', [SupportController::class, 'close'])->name('support.close');
 });

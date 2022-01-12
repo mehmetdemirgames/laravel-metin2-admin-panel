@@ -44,6 +44,7 @@
             @include('layouts.navigation-dropdown')
             <main class="h-full overflow-y-auto">
                 @if ($errors->any())
+                
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
                             <li >{{ $error }}</li>
