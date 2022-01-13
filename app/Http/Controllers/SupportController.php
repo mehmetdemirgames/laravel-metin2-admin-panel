@@ -13,9 +13,21 @@ class SupportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = new_ticket::paginate(10);
+        $tickets = new_ticket::select('id', 'account', 'open_time', 'last_msg' , 'category', 'status', 'open')->orderByDesc('open');
+
+        if(request()->get('acan')){
+           $tickets = $tickets->where('account', 'LIKE', "%".request()->get('acan')."%");
+        }
+        if(request()->get('open')){
+            $status = [ 'Kapandı' => '0', 'Bekliyor' => '1'];
+            $status_select = $status[$request->get('open')];
+            $tickets = $tickets->where('open', $status_select);
+        }
+
+        $tickets = $tickets->paginate(10);
+
         return view('support.list', compact('tickets'));
     }
 
@@ -101,7 +113,6 @@ class SupportController extends Controller
             return redirect()->back()->withErrors('Tickete cevap verilirken bir hata oluştu');
         }
     }
-
 
     public function close($ticket_id)
     {

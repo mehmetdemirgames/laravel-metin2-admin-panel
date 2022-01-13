@@ -6,6 +6,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\GuildController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,5 @@ Route::middleware('auth')->group(function () {
     Route::post('account/{id}/transactions', [AccountController::class, 'transactions'])->name('account.transactions');
     Route::post('support/{id}/add_answer', [SupportController::class, 'add_answer'])->name('support.add_answer');
     Route::get('support/{id}/close', [SupportController::class, 'close'])->name('support.close');
+    Route::resource('shop', ShopController::class);
 });

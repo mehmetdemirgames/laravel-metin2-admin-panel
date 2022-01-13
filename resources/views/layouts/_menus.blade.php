@@ -1,6 +1,6 @@
 <div class="py-4 text-gray-500 dark:text-gray-400">
-    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-        {{ config('app.name') }}
+    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="{{route('dashboard')}}">
+        Dashboard
     </a>
     <ul class="mt-6">
         <li class="relative px-6 py-3">
@@ -42,7 +42,7 @@
                     <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
                     </path>
                 </svg>
-                <span class="ml-4">Destek</span>
+                <span class="ml-4">Destek Talepleri</span>
             </a>
         </li>
         <li class="relative px-6 py-3">

@@ -3,8 +3,35 @@
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Teknik Destek Talepleri
         </h2>
-        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+
+        <form method="GET" action="">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                focus:outline-none focus:shadow-outline-purple 
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control" placeholder="Açan" name="acan"
+                        value="{{request()->get('acan')}}" />
+                </div>
+
+                <div class="col-md-2">
+                    <select name="open" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                focus:outline-none focus:shadow-outline-purple 
+                dark:text-gray-300 dark:focus:shadow-outline-gray form-control">
+                        <option value="">Durumu Seçiniz</option>
+                        <option value="Bekliyor" @if(request()->get('open')=='Bekliyor') selected @endif>Bekliyor</option>
+                        <option value="Kapandı" @if(request()->get('open')=='Kapandı') selected @endif>Kapandı</option>
+                    </select>
+
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-full">Ara</button>
+                </div>
+            </div>
+        </form>
+        <div class="w-full overflow-hidden rounded-lg shadow-xs mt-2">
+
             <div class="w-full overflow-x-auto">
+
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr
