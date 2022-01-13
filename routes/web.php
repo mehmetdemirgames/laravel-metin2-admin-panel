@@ -7,6 +7,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\GuildController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\RefferalController;
+use App\Http\Controllers\CommandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::post('support/{id}/add_answer', [SupportController::class, 'add_answer'])->name('support.add_answer');
     Route::get('support/{id}/close', [SupportController::class, 'close'])->name('support.close');
     Route::resource('shop', ShopController::class);
+    Route::get('channel/truncate', [ChannelController::class, 'truncate'])->name('channel.truncate');
+    Route::resource('channel', ChannelController::class);
+    Route::get('refferal', [RefferalController::class, 'index'])->name('refferal.index');
+    Route::get('command', [CommandController::class, 'index'])->name('command.index');
 });
