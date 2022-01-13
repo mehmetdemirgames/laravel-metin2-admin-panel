@@ -1,4 +1,4 @@
-<x-app-layout title="Tables">
+<x-app-layout title="Teknik Destek Talepleri">
     <div class="container grid px-6 mx-auto">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Teknik Destek Talepleri
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="col-md-2">
-                    <select name="open" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
+                    <select name="open" onchange="this.form.submit()" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 
                 focus:outline-none focus:shadow-outline-purple 
                 dark:text-gray-300 dark:focus:shadow-outline-gray form-control">
                         <option value="">Durumu Seçiniz</option>

@@ -60,7 +60,7 @@ class SupportController extends Controller
      */
     public function show($ticket_id)
     {
-       $ticket_and_msg = new_ticket::find($ticket_id)->with('ticket_msg')->first();
+       $ticket_and_msg = new_ticket::whereId($ticket_id)->with('ticket_msg')->first();
        return view('support.show', compact('ticket_and_msg'));
     }
 

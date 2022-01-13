@@ -19,14 +19,14 @@
                         @foreach($logmarket as $market)
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
-                                {{$loop->iteration }}
+                                {{$logmarket->firstItem() + $loop->index }}
                             </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{$market->item_kod}}
+                            <td class="px-4 py-3 text-sm ">
+                                {{item_bul($market->item_kod)}}({{$market->item_kod}})
                             </td>
                             <td class="px-4 py-3 text-m">
                                 <span
-                                    class="px-2 py-1 font-extrabold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    class="px-2 py-1 font-sm text-sm leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     {{$market->toplam}}
                                 </span>
                             </td>
