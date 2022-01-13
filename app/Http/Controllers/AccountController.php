@@ -83,7 +83,7 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('account.edit');
     }
 
     /**

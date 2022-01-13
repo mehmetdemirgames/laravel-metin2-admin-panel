@@ -10,6 +10,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\RefferalController;
 use App\Http\Controllers\CommandController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('channel', ChannelController::class);
     Route::get('refferal', [RefferalController::class, 'index'])->name('refferal.index');
     Route::get('command', [CommandController::class, 'index'])->name('command.index');
+    Route::resource('coupon', CouponController::class);
 });

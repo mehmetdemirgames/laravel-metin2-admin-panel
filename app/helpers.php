@@ -11,3 +11,13 @@ function item_bul($id){
     }
     return "Bilinmiyor";
 }
+
+function getCode($length = 3){
+	$code = '';
+	$accept = array_merge(range(0,9),range('A','Z'));
+	for($i = 0; $i < $length; $i++){
+		$code .= $accept[rand(0, (count($accept)-1))];
+	}
+	
+	return $code;
+}
