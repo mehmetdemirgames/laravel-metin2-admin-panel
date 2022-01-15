@@ -32,7 +32,11 @@
                                 {{$coupon->ep}}
                             </td>
                             <td class="px-4 py-3 text-m">
-                               {{$coupon->durum}}
+                               @if ($coupon->durum == '0')
+                                   Kullanılmadı
+                                @elseif($coupon->durum == '1')
+                                    Kullanıldı
+                               @endif
                             </td>
                             
                             <td class="px-4 py-3 text-sm ">

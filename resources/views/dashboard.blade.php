@@ -1,6 +1,6 @@
 <x-app-layout title="Dashboard">
     <div class="container grid px-6 mx-auto">
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Dashboard</h2>
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Anasayfa</h2>
 
         <!-- Cards -->
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -17,7 +17,7 @@
                         Toplam Kayıt
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$account_count}}
+                        {{$__account_count}}
                     </p>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         Toplam Oyuncu
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$player_count}}
+                        {{$__player_count}}
                     </p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         Banlı Üye
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$block_account_count}}
+                        {{$__block_account_count}}
                     </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         Aktif Pazar
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$active_shops}}
+                        {{$__active_shops}}
                     </p>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                         Online Sayısı(Mysql)
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$online_count_sql}}
+                        {{$__online_count}}
                     </p>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                         Cevaplanmamış Destek Talepleri
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        <a href="{{route('support.index')}}">{{$unanswered_ticket}}</a>
+                        <a href="{{route('support.index')}}">{{$__unanswered_ticket}}</a>
                     </p>
                 </div>
             </div>
