@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 }); */
 
 Route::middleware('auth')->group(function () {
+    Route::get('sales_static', [MainController::class, 'sales_static']);
     Route::get('dashboard', [ MainController::class, 'dashboard'])->name('dashboard');
     Route::resource('player', PlayerController::class);
     Route::resource('guild', GuildController::class);
