@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\account\kupon_log;
-use Carbon\Carbon;
 
 class MainController extends Controller
 {

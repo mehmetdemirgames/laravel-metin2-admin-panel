@@ -55,10 +55,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$__coupon_sales->KabasakalDaySales}}
+                                {{$__coupon_sales->KabasakalDaySales}} TL
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                {{$__coupon_sales->KabasakalTotalSales}}
+                                {{$__coupon_sales->KabasakalTotalSales}} TL
                             </td>
                         </tr>
                         
@@ -79,10 +79,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$__coupon_sales->ItemciDaySales}}
+                                {{$__coupon_sales->ItemciDaySales}} TL
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                {{$__coupon_sales->ItemciTotalSales}}
+                                {{$__coupon_sales->ItemciTotalSales}} TL
                                 
                             </td>
                         </tr>
