@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        
 
         if(Cache::get('__online_count')){
             $online_count = Cache::get('__online_count');

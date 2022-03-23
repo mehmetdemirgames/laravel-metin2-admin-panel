@@ -31,10 +31,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$__paywant_sales->PaywantDaySales}} TL
+                                <?php echo e($__paywant_sales->PaywantDaySales); ?> TL
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                {{ $__paywant_sales->PaywantTotalSales }} TL
+                                <?php echo e($__paywant_sales->PaywantTotalSales); ?> TL
                             </td>
                         </tr>
 
@@ -55,10 +55,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$__coupon_sales->KabasakalDaySales}} TL
+                                <?php echo e($__coupon_sales->KabasakalDaySales); ?> TL
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                {{$__coupon_sales->KabasakalTotalSales}} TL
+                                <?php echo e($__coupon_sales->KabasakalTotalSales); ?> TL
                             </td>
                         </tr>
                         
@@ -79,10 +79,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$__coupon_sales->ItemciDaySales}} TL
+                                <?php echo e($__coupon_sales->ItemciDaySales); ?> TL
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                {{$__coupon_sales->ItemciTotalSales}} TL
+                                <?php echo e($__coupon_sales->ItemciTotalSales); ?> TL
                                 
                             </td>
                         </tr>
@@ -104,10 +104,10 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm font-bold">
-                                {{$__total_day_sales}} TL
+                                <?php echo e($__total_day_sales); ?> TL
                             </td>
                             <td class="px-4 py-3 text-sm font-bold">
-                                {{$__total_sales}} TL
+                                <?php echo e($__total_sales); ?> TL
                             </td>
                         </tr>
 
@@ -118,4 +118,4 @@
         </div>
 
         
-    </div>
+    </div><?php /**PATH C:\Users\PC\Desktop\dev\laravel-metin2-admin-panel\resources\views/layouts/sales_static.blade.php ENDPATH**/ ?>

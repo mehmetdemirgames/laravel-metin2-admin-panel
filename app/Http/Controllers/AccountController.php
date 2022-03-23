@@ -83,7 +83,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        return view('account.edit');
+        $account = Account::whereId($id)->first();
+        return view('account.edit', compact('account'));
     }
 
     /**
@@ -166,4 +167,5 @@ class AccountController extends Controller
 
         return $request->all();
     }
+
 }

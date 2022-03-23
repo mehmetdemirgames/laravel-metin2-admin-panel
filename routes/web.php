@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::post('account/{id}/transactions', [AccountController::class, 'transactions'])->name('account.transactions');
     Route::post('support/{id}/add_answer', [SupportController::class, 'add_answer'])->name('support.add_answer');
     Route::get('support/{id}/close', [SupportController::class, 'close'])->name('support.close');
+    Route::get('sendcash/updatecash', [ShopController::class, 'updateCash'])->name('shop.updatecash');
+    Route::get('sendcash', [ShopController::class, 'SendCash'])->name('shop.sendcash');
     Route::resource('shop', ShopController::class);
     Route::get('channel/truncate', [ChannelController::class, 'truncate'])->name('channel.truncate');
     Route::resource('channel', ChannelController::class);

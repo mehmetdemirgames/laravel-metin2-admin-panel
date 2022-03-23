@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\player\log_market;
-
+use App\Models\account\account;
+use App\Models\player\player;
 
 class ShopController extends Controller
 {
@@ -88,4 +89,93 @@ class ShopController extends Controller
     {
         //
     }
+
+    public function SendCash(){
+        return view('shop.sendcash');
+    }
+
+    public function updateCash(Request $request)
+    {
+        $request->validate([
+            'accountType' => ['required'],
+            'NickOrLogin' => ['required'],
+            'cashType' => ['required'],
+            'count' => ['required', 'numeric']
+        ]);
+
+        if($request->accountType == 'account_login'){
+            
+           $account = Account::select('id', 'login', 'cash', 'coins')->where('login', $request->get('NickOrLogin'))->first();
+
+            if($account){
+                    if($request->cashType == 'ep'){
+                    $CashCount = $account->cash;
+                    $HowAddCash = $request->get('count') + $CashCount;
+                    $update = Account::where('login', $request->get('NickOrLogin'))->update(['cash' => $HowAddCash]);
+
+                    if($update){
+                        return redirect()->back()->withSuccess('Ep gönderimi başarıyla sağlandı.');
+                    }
+                    else{
+                    return redirect()->back()->WithErrors('Hata oluştu.');
+                    }
+                }
+                elseif($request->cashType == 'mp'){
+                    $CoinsCount = $account->coins;
+                    $HowAddCoins = $request->get('count') + $CoinsCount;
+                    $update = Account::where('login', $request->get('NickOrLogin'))->update(['coins' => $HowAddCoins]);
+
+                    if($update){
+                        return redirect()->back()->withSuccess('Mp gönderimi başarıyla sağlandı');
+                    }
+                    else{
+                        return redirect()->back()->WithErrors('Hata oluştu.');
+                    }
+                }
+            }else{
+                return redirect()->back()->WithErrors('Böyle bir üyelik bulunamadı.');
+            }
+
+        }
+
+        elseif($request->accountType == 'player_name'){
+            $player = Player::with('account')
+            ->where('name', $request->get('NickOrLogin'))
+            ->first();
+            
+            if($player){
+                if($request->cashType == 'ep')
+                {
+                    $CashCount = $player->account->cash;
+                    $HowAddCash = $request->get('count') + $CashCount;
+                    $update = Account::where('id', $player->account_id)->update(['cash' => $HowAddCash]);
+
+                    if($update){
+                        return redirect()->back()->withSuccess('Ep gönderimi başarıyla sağlandı.');
+                    }
+                    else
+                    {
+                        return redirect()->back()->WithErrors('Hata oluştu.');
+                    }
+                }
+                elseif($request->cashType == 'mp'){
+                    $CoinsCount = $player->account->coins;
+                    $HowAddCoins = $request->get('count') + $CoinsCount;
+                    $update = Account::where('id', $player->account_id)->update(['coins' => $HowAddCoins]);
+
+                    if($update){
+                        return redirect()->back()->withSuccess('Mp gönderimi başarıyla sağlandı');
+                    }
+                    else{
+                    return redirect()->back()->WithErrors('Hata oluştu.');
+                    }
+                }
+            }
+            else{
+                return redirect()->back()->WithErrors('Oyuncu bulunamadı.');
+            }
+
+        }
+    }
+
 }

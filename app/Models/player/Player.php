@@ -24,7 +24,7 @@ class Player extends Model
     }
     
     public function account(){
-        return $this->belongsTo('App\Models\account\Account');
+        return $this->belongsTo('App\Models\account\Account')->select('id', 'login', 'email', 'phone1', 'cash', 'coins');
     }
 
     public function guild_member(){

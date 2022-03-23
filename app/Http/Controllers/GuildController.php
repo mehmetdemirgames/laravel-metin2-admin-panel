@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\player\Guild;
+use Illuminate\Support\Facades\Cache;
 
 class GuildController extends Controller
 {
@@ -14,20 +15,36 @@ class GuildController extends Controller
      */
     public function index()
     {
-        $guild = Guild::select('name', 'level', 'lider', 'bayrak');
+        $currentPage = request()->get('page',1);
+        $guildname = request()->get('guild_name',1);
+        $guild_leader = request()->get('guild_leader',1);
+        // asd 
 
+        $guild = Cache::remember('guild_list'. $currentPage . $guildname . $guild_leader, 3600, function () {
+            
+        // $guild_list = Guild::select('id','name', 'level', 'lider', 'bayrak')->limit(5);
+        $guild_list = Guild::select('id','name', 'level', 'lider', 'bayrak');
+        
         if(request()->get('guild_name')){
-           $guild = $guild->where('name', 'LIKE', "%".request()->get('guild_name')."%");
+            $guild_list = $guild_list->where('name', 'LIKE', "%".request()->get('guild_name')."%");
         }
         if(request()->get('guild_leader')){
-           $guild = $guild->where('lider', 'LIKE', "%".request()->get('guild_leader')."%");
+            $guild_list = $guild_list->where('lider', 'LIKE', "%".request()->get('guild_leader')."%");
         }
 
-        $guild = $guild->paginate(10) ?? abort(404, 'Lonca bulunamadı');
+        // $all = $guild_list->get()->sortByDesc('GuildSales');
 
+        $guild_list = $guild_list->paginate(5) ?? abort(404, 'Lonca bulunamadı');
+        return $guild_list;
+        // $all = $guild_list->get()->sortByDesc('GuildSales');
+		// return $all;              
+        });
 
+        
+        // return $guild;
+        return view('guild.list',compact('guild'));
 
-        return view('guild.list', compact('guild'));
+        // return view('guild.list', compact('guild'));
     }
 
     /**
@@ -58,8 +75,8 @@ class GuildController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($guild_name)
-    {
-        $guild = Guild::whereName($guild_name)->with('guild_members')->first();
+    { 
+        $guild = Guild::whereName($guild_name)->first();
         return view('guild.show', compact('guild'));
     }
 

@@ -1,8 +1,13 @@
-<x-app-layout title="Guilds Show">
+<?php if (isset($component)) { $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\AppLayout::class, ['title' => 'Guilds Show']); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
 
     <div class="container grid px-6 mx-auto">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            {{$guild->name}} Loncası Detay Sayfası
+            <?php echo e($guild->name); ?> Loncası Detay Sayfası
         </h2>
 
         <div class="row">
@@ -18,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @foreach ($guild->GuildPlayers as $playerr)
+                        <?php $__currentLoopData = $guild->GuildPlayers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $playerr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr class="text-gray-700 dark:text-gray-400">
 
                             <td class="px-4 py-3">
@@ -26,31 +31,33 @@
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                         <img class="object-cover w-full h-full rounded-full"
-                                            src="{{asset("img/jobs/$playerr->job.jpg")}}" alt="" loading="lazy" />
+                                            src="<?php echo e(asset("img/jobs/$playerr->job.jpg")); ?>" alt="" loading="lazy" />
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">{{$playerr->name}}</p>
+                                        <p class="font-semibold"><?php echo e($playerr->name); ?></p>
                                         
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$playerr->level}}
+                                <?php echo e($playerr->level); ?>
+
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{$playerr->last_play->diffForHumans()}}
+                                <?php echo e($playerr->last_play->diffForHumans()); ?>
+
                             </td>
 
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
-                                    <a href="{{route('account.action', $playerr->account->id)}}"
+                                    <a href="<?php echo e(route('account.action', $playerr->account->id)); ?>"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit">
                                         <i class="fa fa-ban"></i>
                                     </a>
-                                    <a href="{{route('player.edit', $playerr->name)}}"
+                                    <a href="<?php echo e(route('player.edit', $playerr->name)); ?>"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Edit">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -61,7 +68,7 @@
                                     </a>
                                 </div>
                             </td>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tr>
                     </tbody>
                 </table>
@@ -78,7 +85,8 @@
                         Lonca Seviyesi
                         <span
                             class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-orange-600 rounded-full">
-                            {{$guild->level}}
+                            <?php echo e($guild->level); ?>
+
                         </span>
                     </li>
 
@@ -86,21 +94,24 @@
                         Lonca Puanı
                         <span
                             class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-blue-600 rounded-full">
-                            {{$guild->ladder_point}}
+                            <?php echo e($guild->ladder_point); ?>
+
                         </span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lonca Beceri Seviyesi
                         <span
                             class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-blue-600 rounded-full">
-                            {{$guild->skill_point}}
+                            <?php echo e($guild->skill_point); ?>
+
                         </span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lonca Lideri
                         <span
                             class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-blue-600 rounded-full">
-                            {{$guild->lider}}
+                            <?php echo e($guild->lider); ?>
+
                         </span>
                     </li>
 
@@ -109,7 +120,8 @@
                         Bu Lonca Ne Kadar Para Yatırmış?
                         <span
                             class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-blue-600 rounded-full">
-                            {{$guild->GuildSales}}
+                            <?php echo e($guild->GuildSales); ?>
+
                         </span>
                     </li>
 
@@ -118,9 +130,10 @@
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Lonca Üyelerine Ait Numaralar</span>
                 <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" rows="50" placeholder="Enter some long form content.">
-                    @foreach($guild->GuildPlayers as $player)
-                    {{$player->account->phone1}}
-                    @endforeach
+                    <?php $__currentLoopData = $guild->GuildPlayers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $player): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo e($player->account->phone1); ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </textarea>
             </label>
 
@@ -139,4 +152,10 @@
 
     </div>
 
-</x-app-layout>
+ <?php if (isset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da)): ?>
+<?php $component = $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da; ?>
+<?php unset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php /**PATH C:\Users\PC\Desktop\dev\laravel-metin2-admin-panel\resources\views/guild/show.blade.php ENDPATH**/ ?>

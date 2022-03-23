@@ -22,7 +22,7 @@ class PlayerController extends Controller
 
         if(request()->get('name')){
            $player = $player->where('name', 'LIKE', "%".request()->get('name')."%");
-        }
+        } 
         if(request()->get('ip')){
            $player = $player->where('ip', request()->get('ip'));
         }

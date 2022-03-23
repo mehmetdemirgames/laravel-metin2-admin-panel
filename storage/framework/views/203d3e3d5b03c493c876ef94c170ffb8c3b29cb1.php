@@ -1,12 +1,12 @@
 <div class="py-4 text-gray-500 dark:text-gray-400">
-    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="{{route('dashboard')}}">
+    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="<?php echo e(route('dashboard')); ?>">
         Dashboard
     </a>
     <ul class="mt-6">
         <li class="relative px-6 py-3">
             <a data-turbolinks-action="replace"
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="{{route('dashboard')}}">
+                href="<?php echo e(route('dashboard')); ?>">
                 <svg class="w-5 h-5" ari a-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path
@@ -20,28 +20,28 @@
         <li class="relative px-6 py-3">
             <a data-turbolinks-action="replace"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{route('account.index')}}">
+                href="<?php echo e(route('account.index')); ?>">
                 <i class="fa fa-user-friends"></i>
                 <span class="ml-4">Üyelikler</span>
             </a>
         </li>
         <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{route('player.index')}}">
+                href="<?php echo e(route('player.index')); ?>">
                 <i class="fa fa-user"></i>
                 <span class="ml-4">Karakterler</span>
             </a>
         </li>
         <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{route('guild.index')}}">
+                href="<?php echo e(route('guild.index')); ?>">
                 <i class="fa fa-house-user"></i>
                 <span class="ml-4">Loncalar</span>
             </a>
         </li>
         <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{route('support.index')}}">
+                href="<?php echo e(route('support.index')); ?>">
                 <i class="fa fa-envelope"></i>
                 <span class="ml-4">Destek Talepleri</span>
             </a>
@@ -59,17 +59,17 @@
                     class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="dropdownButton">
                         <li>
-                            <a href="{{route('channel.index')}}"
+                            <a href="<?php echo e(route('channel.index')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Kanal
                                 Logları</a>
                         </li>
                         <li>
-                            <a href="{{route('refferal.index')}}"
+                            <a href="<?php echo e(route('refferal.index')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Kayıt
                                 Logları & Referans</a>
                         </li>
                         <li>
-                            <a href="{{route('command.index')}}"
+                            <a href="<?php echo e(route('command.index')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Yönetici
                                 Logları(GM)</a>
                         </li>
@@ -91,18 +91,18 @@
                     class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                     <ul class="py-1" aria-labelledby="dropdownButton2">
                         <li>
-                            <a href="{{route('shop.index')}}"
+                            <a href="<?php echo e(route('shop.index')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Eşya Satış İstatistik</a>
                         </li>
                         <li>
-                            <a href="{{route('coupon.index')}}"
+                            <a href="<?php echo e(route('coupon.index')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Epin Kodu Listesi</a>
                         </li>
                         
                         <li>
-                            <a href="{{route('shop.sendcash')}}"
+                            <a href="<?php echo e(route('shop.sendcash')); ?>"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 EP & MP Gönder</a>
                         </li>
@@ -123,3 +123,4 @@
 
     </ul>
 </div>
+<?php /**PATH C:\Users\PC\Desktop\dev\laravel-metin2-admin-panel\resources\views/layouts/_menus.blade.php ENDPATH**/ ?>
